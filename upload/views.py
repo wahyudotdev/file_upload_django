@@ -7,7 +7,13 @@ class FileUploadView(APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, filename, format=None):
-        file_object = request.FILES["file"]
+
+        usrRegId = request.data['usrRegId']
+        usrProfileCaption = request.data['usrProfileCaption']
+        
+        print(f'{usrRegId} - {usrProfileCaption}')
+
+        file_object = request.FILES["usrProfileImage"]
         file_name = str(file_object)
         print(f'[INFO] File Name: {file_name}')
         if (not os.path.exists("public")):
